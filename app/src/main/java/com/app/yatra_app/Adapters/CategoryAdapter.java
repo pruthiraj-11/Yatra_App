@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.yatra_app.Models.CategoryModel;
 import com.app.yatra_app.R;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -33,7 +34,13 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.viewHo
 
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
+        holder.textView.setText(list.get(position).getTitle());
 
+        int drawableResourceId=holder.itemView.getResources().getIdentifier(list.get(position).getPicPath(),"drawable",holder.itemView.getContext().getPackageName());
+
+        Glide.with(context)
+                .load(drawableResourceId)
+                .into(holder.imageView);
     }
 
     @Override
