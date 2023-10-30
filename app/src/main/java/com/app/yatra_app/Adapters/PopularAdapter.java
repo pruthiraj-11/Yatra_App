@@ -1,6 +1,7 @@
 package com.app.yatra_app.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.app.yatra_app.DetailActivity;
 import com.app.yatra_app.Models.ItemsModel;
 import com.app.yatra_app.R;
 import com.bumptech.glide.Glide;
@@ -49,6 +51,12 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.viewHold
                 .load(drawableResourceId)
                 .transform(new CenterCrop(),new GranularRoundedCorners(40,40,40,40))
                 .into(holder.imageView);
+
+        holder.itemView.setOnClickListener(view -> {
+            Intent intent=new Intent(holder.itemView.getContext(), DetailActivity.class);
+            intent.putExtra("object",list.get(position));
+            holder.itemView.getContext().startActivity(intent);
+        });
     }
 
     @Override
